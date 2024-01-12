@@ -19,6 +19,12 @@ function main () {
   function render (time) {
     time *= 0.001  // 将时间单位变为秒
 
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement
+      camera.aspect = canvas.clientWidth / canvas.clientHeight
+      camera.updateProjectionMatrix()
+    }
+
     cubes.forEach((cube, ndx) => {
       const speed = 1 + ndx * .1
       const rot = time * speed
@@ -35,6 +41,18 @@ function main () {
 }
 
 main()
+
+function resizeRendererToDisplaySize (renderer) {
+  const canvas = renderer.domElement
+  const pixelRatio = window.devicePixelRatio
+  const width = canvas.clientWidth * pixelRatio | 0
+  const height = canvas.clientHeight * pixelRatio | 0
+  const needResize = canvas.width !== width || canvas.height !== height
+  if (needResize) {
+    renderer.setSize(width, height, false)
+  }
+  return needResize
+}
 
 function makeInstance (geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({ color })
