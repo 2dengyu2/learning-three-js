@@ -1,8 +1,12 @@
 {
-	"devDependencies": {
-		"vite": "^5.0.11"
-	},
-	"dependencies": {
-		"three": "^0.160.0"
-	}
+  "devDependencies": {
+    "vite": "^5.0.11"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "scripts": {
+    "npx:dev": "npx vite",
+    "npx:build": "npx vite build"
+  }
 }
